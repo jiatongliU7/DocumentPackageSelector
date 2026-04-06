@@ -41,57 +41,62 @@ export default function HomeClient() {
   }, []);
 
   return (
-    <div className="min-h-full bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
-      <div className="mx-auto max-w-xl px-4 py-10 sm:px-6">
-        <header className="mb-8 border-b border-zinc-200 pb-6 dark:border-zinc-800">
-          <h1 className="text-xl font-semibold">Case {CASE_ID}</h1>
-          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            Open a package, tick what you need, save. Generate is a stub (console
-            + alert).
+    <div className="relative min-h-full">
+      <div className="mx-auto max-w-xl px-4 py-12 sm:px-6">
+        <header className="mb-10 border-b border-white/10 pb-8 text-center sm:text-left">
+          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.22em] text-violet-300/75">
+            Document packages
+          </p>
+          <h1 className="font-display text-4xl font-normal tracking-tight text-gradient-display sm:text-5xl">
+            Case {CASE_ID}
+          </h1>
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-400 sm:mx-0">
+            Pick what goes in each package, save, then generate (stub: console +
+            alert).
           </p>
         </header>
 
-        <div className="space-y-6">
-          <div className="rounded border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
-            <h2 className="text-sm font-medium">Buyer</h2>
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+        <div className="space-y-5">
+          <div className="rounded-xl border border-white/10 bg-white/[0.04] p-5 shadow-lg shadow-black/20 backdrop-blur-sm">
+            <h2 className="text-sm font-medium text-slate-200">Buyer</h2>
+            <p className="mt-1 text-sm text-slate-400">
               Buyer docs and anything marked shared.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={() => setBuyerOpen(true)}
-                className="rounded border border-zinc-800 bg-zinc-800 px-3 py-1.5 text-sm text-white hover:bg-zinc-700 dark:border-zinc-200 dark:bg-zinc-200 dark:text-zinc-900 dark:hover:bg-white"
+                className="rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-md shadow-violet-900/35 transition hover:brightness-110"
               >
                 Select documents
               </button>
               <button
                 type="button"
                 onClick={() => void generate("buyer")}
-                className="rounded border border-zinc-300 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+                className="rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm text-slate-200 transition hover:bg-white/10"
               >
                 Generate
               </button>
             </div>
           </div>
 
-          <div className="rounded border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
-            <h2 className="text-sm font-medium">Seller</h2>
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+          <div className="rounded-xl border border-white/10 bg-white/[0.04] p-5 shadow-lg shadow-black/20 backdrop-blur-sm">
+            <h2 className="text-sm font-medium text-slate-200">Seller</h2>
+            <p className="mt-1 text-sm text-slate-400">
               Seller docs and shared (same shared list as buyer).
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={() => setSellerOpen(true)}
-                className="rounded border border-zinc-800 bg-zinc-800 px-3 py-1.5 text-sm text-white hover:bg-zinc-700 dark:border-zinc-200 dark:bg-zinc-200 dark:text-zinc-900 dark:hover:bg-white"
+                className="rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-md shadow-violet-900/35 transition hover:brightness-110"
               >
                 Select documents
               </button>
               <button
                 type="button"
                 onClick={() => void generate("seller")}
-                className="rounded border border-zinc-300 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+                className="rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm text-slate-200 transition hover:bg-white/10"
               >
                 Generate
               </button>

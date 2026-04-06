@@ -372,7 +372,7 @@ export function DocumentPackageModal({
       role="presentation"
     >
       <div
-        className="absolute inset-0 cursor-default bg-black/40"
+        className="absolute inset-0 cursor-default bg-slate-950/55 backdrop-blur-[2px]"
         onClick={onClose}
         role="presentation"
         aria-hidden
@@ -382,18 +382,21 @@ export function DocumentPackageModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-10 flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-md border border-zinc-300 bg-white shadow-lg outline-none dark:border-zinc-600 dark:bg-zinc-900"
+        className="relative z-10 flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0f1419]/95 shadow-2xl shadow-black/40 outline-none backdrop-blur-md"
       >
-        <div className="flex items-start justify-between gap-4 border-b border-zinc-200 px-4 py-3 dark:border-zinc-700">
+        <div className="flex items-start justify-between gap-4 border-b border-white/10 px-4 py-3">
           <div className="min-w-0">
-            <h2 id={titleId} className="text-base font-semibold text-zinc-900 dark:text-zinc-50">
+            <h2
+              id={titleId}
+              className="font-display text-lg font-medium tracking-tight text-slate-100"
+            >
               {title}
             </h2>
-            <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="mt-0.5 text-sm text-slate-400">
               {selectedCount} of {allKeys.length} selected
             </p>
             {syncHint ? (
-              <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-500" role="status" aria-live="polite">
+              <p className="mt-1 text-xs text-slate-500" role="status" aria-live="polite">
                 {syncHint}
               </p>
             ) : null}
@@ -401,7 +404,7 @@ export function DocumentPackageModal({
           <button
             type="button"
             onClick={onClose}
-            className="shrink-0 rounded p-1 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-zinc-200"
+            className="shrink-0 rounded-lg p-1 text-slate-400 transition hover:bg-white/10 hover:text-slate-200"
             aria-label="Close"
           >
             <span aria-hidden className="text-lg leading-none">
@@ -410,12 +413,12 @@ export function DocumentPackageModal({
           </button>
         </div>
 
-        <div className="flex flex-wrap gap-2 border-b border-zinc-200 px-4 py-2 dark:border-zinc-700">
+        <div className="flex flex-wrap gap-2 border-b border-white/10 px-4 py-2">
           <button
             type="button"
             onClick={selectAll}
             disabled={loading || manualSaving || allKeys.length === 0}
-            className="rounded border border-zinc-300 bg-white px-2.5 py-1 text-sm hover:bg-zinc-50 disabled:opacity-50 dark:border-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 text-sm text-slate-200 hover:bg-white/10 disabled:opacity-50"
           >
             Select all
           </button>
@@ -423,7 +426,7 @@ export function DocumentPackageModal({
             type="button"
             onClick={deselectAll}
             disabled={loading || manualSaving || allKeys.length === 0}
-            className="rounded border border-zinc-300 bg-white px-2.5 py-1 text-sm hover:bg-zinc-50 disabled:opacity-50 dark:border-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 text-sm text-slate-200 hover:bg-white/10 disabled:opacity-50"
           >
             Deselect all
           </button>
@@ -431,7 +434,7 @@ export function DocumentPackageModal({
 
         {error ? (
           <div
-            className="mx-4 mt-3 rounded border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-900 dark:border-red-900/60 dark:bg-red-950/50 dark:text-red-200"
+            className="mx-4 mt-3 rounded-lg border border-red-500/30 bg-red-950/40 px-3 py-2 text-sm text-red-200"
             role="alert"
             aria-live="assertive"
           >
@@ -441,8 +444,8 @@ export function DocumentPackageModal({
 
         <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3">
           {loading ? (
-            <div className="flex flex-col items-center justify-center gap-2 py-12 text-zinc-500">
-              <Spinner className="h-6 w-6 text-zinc-400" />
+            <div className="flex flex-col items-center justify-center gap-2 py-12 text-slate-500">
+              <Spinner className="h-6 w-6 text-violet-400/80" />
               <span className="text-sm">Loading…</span>
             </div>
           ) : (
@@ -451,18 +454,18 @@ export function DocumentPackageModal({
                 <section key={party} aria-labelledby={`${titleId}-${party}`}>
                   <h3
                     id={`${titleId}-${party}`}
-                    className="mb-2 text-sm font-medium text-zinc-800 dark:text-zinc-200"
+                    className="mb-2 text-sm font-medium text-slate-300"
                   >
                     {label}
                   </h3>
-                  <ul className="divide-y divide-zinc-200 overflow-hidden rounded border border-zinc-200 dark:divide-zinc-700 dark:border-zinc-700">
+                  <ul className="divide-y divide-white/10 overflow-hidden rounded-lg border border-white/10">
                     {docs.map((doc) => {
                       const id = `${titleId}-${doc.key}`;
                       const isOn = selected.has(doc.key);
                       return (
                         <li
                           key={doc.key}
-                          className="flex items-start gap-2 bg-white px-3 py-2 dark:bg-zinc-900"
+                          className="flex items-start gap-2 bg-white/[0.03] px-3 py-2"
                         >
                           <input
                             id={id}
@@ -470,15 +473,15 @@ export function DocumentPackageModal({
                             checked={isOn}
                             disabled={doc.mandatory || manualSaving}
                             onChange={() => toggle(doc.key, doc.mandatory)}
-                            className="mt-0.5 h-4 w-4 rounded border-zinc-400 text-zinc-900 focus:ring-1 focus:ring-zinc-400 disabled:cursor-not-allowed disabled:opacity-70 dark:border-zinc-500 dark:bg-zinc-900"
+                            className="mt-0.5 h-4 w-4 rounded border-white/25 bg-white/5 text-violet-500 accent-violet-500 focus:ring-1 focus:ring-violet-400/50 disabled:cursor-not-allowed disabled:opacity-70"
                             aria-describedby={doc.mandatory ? `${id}-req` : undefined}
                           />
                           <div className="min-w-0 flex-1">
-                            <label htmlFor={id} className="cursor-pointer text-sm text-zinc-900 dark:text-zinc-100">
+                            <label htmlFor={id} className="cursor-pointer text-sm text-slate-200">
                               {doc.name}
                             </label>
                             {doc.mandatory ? (
-                              <span id={`${id}-req`} className="ml-1.5 text-xs text-zinc-500 dark:text-zinc-500">
+                              <span id={`${id}-req`} className="ml-1.5 text-xs text-violet-300/70">
                                 (required)
                               </span>
                             ) : null}
@@ -493,12 +496,12 @@ export function DocumentPackageModal({
           )}
         </div>
 
-        <div className="flex justify-end gap-2 border-t border-zinc-200 bg-zinc-50 px-4 py-3 dark:border-zinc-700 dark:bg-zinc-950/50">
+        <div className="flex justify-end gap-2 border-t border-white/10 bg-black/20 px-4 py-3">
           <button
             type="button"
             onClick={onClose}
             disabled={manualSaving}
-            className="rounded border border-zinc-300 bg-white px-3 py-1.5 text-sm hover:bg-zinc-50 disabled:opacity-50 dark:border-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+            className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-sm text-slate-200 hover:bg-white/10 disabled:opacity-50"
           >
             Cancel
           </button>
@@ -506,7 +509,7 @@ export function DocumentPackageModal({
             type="button"
             onClick={() => void handleSave()}
             disabled={loading || manualSaving || allKeys.length === 0}
-            className="inline-flex items-center gap-2 rounded border border-zinc-800 bg-zinc-800 px-3 py-1.5 text-sm text-white hover:bg-zinc-700 disabled:opacity-50 dark:border-zinc-200 dark:bg-zinc-200 dark:text-zinc-900 dark:hover:bg-white"
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 px-4 py-1.5 text-sm font-medium text-white shadow-md shadow-violet-900/30 hover:brightness-110 disabled:opacity-50"
           >
             {manualSaving ? (
               <>
