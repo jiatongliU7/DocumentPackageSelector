@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local / optional (not part of assignment repo)
+DEMO_SCRIPT.md
+AGENTS.md
+CLAUDE.md
